@@ -21,9 +21,11 @@
 
      Open two terminals.
 
-     Terminal 1:
+     Terminal 1 (this is the terminal in which you activated your virtual environment):
      ------------
+
      export FLASK_APP=hello.py
+
      python -m flask run
 
      Terminal 2:
