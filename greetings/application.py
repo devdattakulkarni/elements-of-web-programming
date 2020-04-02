@@ -31,11 +31,7 @@ def create_table():
                                       database=db)
     except Exception as exp:
         print(exp)
-        import MySQLdb
-        #try:
-        cnx = MySQLdb.connect(unix_socket=hostname, user=username, passwd=password, db=db)
-        #except Exception as exp1:
-        #    print(exp1)
+        raise
 
     cur = cnx.cursor()
 
@@ -67,8 +63,7 @@ def populate_data():
                                        database=db)
     except Exception as exp:
         print(exp)
-        import MySQLdb
-        cnx = MySQLdb.connect(unix_socket=hostname, user=username, passwd=password, db=db)
+        raise
 
     cur = cnx.cursor()
     cur.execute("INSERT INTO message (greeting) values ('Hello, World!')")
@@ -93,8 +88,7 @@ def query_data():
                                       database=db)
     except Exception as exp:
         print(exp)
-        import MySQLdb
-        cnx = MySQLdb.connect(unix_socket=hostname, user=username, passwd=password, db=db)
+        raise
 
     cur = cnx.cursor()
 
@@ -127,8 +121,7 @@ def add_to_db():
                                       database=db)
     except Exception as exp:
         print(exp)
-        import MySQLdb
-        cnx = MySQLdb.connect(unix_socket=hostname, user=username, passwd=password, db=db)
+        raise
 
     cur = cnx.cursor()
     cur.execute("INSERT INTO message (greeting) values ('" + msg + "')")

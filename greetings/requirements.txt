@@ -1,2 +1,3 @@
 Flask
-https://cdn.mysql.com/Downloads/Connector-Python/mysql-connector-python-1.0.12.tar.gz
+https://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-8.0.19.tar.gz
+
