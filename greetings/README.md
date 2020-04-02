@@ -55,6 +55,6 @@ Verify:
    mysql>show databases;
    mysql>use greetings_db;
    mysql>show tables;
-   mysql>describe greetings;
-   mysql>select * from greetings;  
+   mysql>describe message;
+   mysql>select * from message;  
          --> Verify that the message that you added is in the table.
