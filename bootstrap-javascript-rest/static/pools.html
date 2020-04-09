@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/styles.css">
+
+<script>
+  var xmlhttp;
+  function retrieveDataFromServer(url, cfunc)
+  {
+     if (window.XMLHttpRequest)
+     {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+     }
+    else
+     {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+     }
+     xmlhttp.onreadystatechange=cfunc;
+     xmlhttp.open("GET", url, true);
+     xmlhttp.send();
+   }
+
+  function displayPools()
+  {
+    retrieveDataFromServer("/pools", function()
+    {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        createTable(xmlhttp.responseText);
+      }
+    });
+  }
+
+  function createTable(jsonData)
+  {
+    console.log(jsonData)
+
+    poolsData = JSON.parse(jsonData)
+
+    var x = document.createElement("TABLE");
+    x.className = "table table-dark table-bordered"
+    x.setAttribute("id", "pools_table");
+    divElement = document.getElementById("poolsDiv");
+    divElement.appendChild(x);
+    createHeaderRow();
+    fontWeight = "normal";
+    var tbody = document.createElement("tbody");
+    document.getElementById("pools_table").appendChild(tbody);
+
+    for(i=0; i<poolsData.length; i++) {
+      createRow(i);
+      createColumn(i, poolsData[i], fontWeight);
+    }
+  }
+
+  function createHeaderRow() {
+    var thead = document.createElement("thead")
+    document.getElementById("pools_table").appendChild(thead);
+    thead.className = "thead-dark"
+
+    headerRow = {}
+    headerRow["Name"] = "Name"
+    headerRow["Timings"] = "Timings"
+    headerRow["Status"] = "Status"
+
+    createRow("thead")
+    fontWeight = "bold"
+    createColumn("thead", headerRow, fontWeight)
+  }
+
+  function createRow(rowId) {
+    var y = document.createElement("TR");
+    y.setAttribute("id", rowId);
+    document.getElementById("pools_table").appendChild(y);
+  }
+
+  function createColumn(rowId, data, fontWeight) {
+
+    var emptyCol = document.createElement("th");
+    emptyCol.scope = "row";
+    document.getElementById(rowId).appendChild(emptyCol);
+
+    var nameCol = document.createElement("TD");
+    nameCol.style.fontWeight = fontWeight;
+    nameCol.class = "col px-md-5";
+    var nameData = document.createTextNode(data.Name);
+    nameCol.appendChild(nameData);
+    document.getElementById(rowId).appendChild(nameCol);
+
+    var timingCol = document.createElement("TD");
+    timingCol.style.fontWeight = fontWeight;
+    timingCol.class = "col px-md-5";
+    var timingData = document.createTextNode(data.Timings);
+    timingCol.appendChild(timingData);
+    document.getElementById(rowId).appendChild(timingCol);
+
+    var statusCol = document.createElement("TD");
+    statusCol.style.fontWeight = fontWeight;
+    statusCol.class = "col px-md-5";
+    var statusData = document.createTextNode(data.Status);
+    statusCol.appendChild(statusData);
+    document.getElementById(rowId).appendChild(statusCol);
+  }
+</script>
+
+</head>
+
+<body onload="displayPools()">
+  <h1> Austin Pools </h1>
+  <div class="jumbotron" >
+    <div class="card">
+      <div class="card-body" id="poolsDiv">
+      </div>
+    </div>
+  </div>
+</body>
+<body>
