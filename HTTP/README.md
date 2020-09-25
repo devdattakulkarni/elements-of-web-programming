@@ -36,6 +36,12 @@
      - curl "http://127.0.0.1:5000/queryparam?param1=abc&param2=def"
      - curl "http://127.0.0.1:5000/queryparam?param1=abc&param2=def&param3=ghi"
      - curl "http://127.0.0.1:5000/queryparam?param1=abc"
+     - curl -v http://127.0.0.1:5000/ut/courses -X POST -H "Content-Type: application/json" -d@course.json
+     - curl -v http://127.0.0.1:5000/ut/courses -X POST -H "Content-Type: application/json" -d@course1.json
+     - curl -v http://127.0.0.1:5000/ut/courses -X POST -H "Content-Type: application/json" -d@course2.json
+     - curl http://127.0.0.1:5000/ut/courses/1 | python -m json.tool
+     - curl http://127.0.0.1:5000/ut/courses/2 | python -m json.tool
+     - curl http://127.0.0.1:5000/ut/courses/3 | python -m json.tool
      
    b) xmlparse.py
 
