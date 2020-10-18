@@ -19,7 +19,7 @@
 7. Try following commands from another window (or browser):
    - curl http://127.0.0.1:8000/assignment3
    - curl http://127.0.0.1:8000/assignment3/libraries
-   - curl -X http://127.0.0.1:8000/assignment3/libraries -d@library.json
+   - curl -X POST http://127.0.0.1:8000/assignment3/libraries -d@library.json
 
 8. Work on your assignment:
    - cd assignment3
