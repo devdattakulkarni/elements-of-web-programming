@@ -8,8 +8,8 @@ application = Flask(__name__)
 app = application
 all_pools = []
 
-@app.route("/static/add_pool", methods=['POST'])
-def add_pool():
+@app.route("/static/search_libraries", methods=['POST'])
+def get_libraries():
 
     # Assignment 4: Insert Pool into database.
     # Extract all the form fields
